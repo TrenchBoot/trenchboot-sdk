@@ -17,7 +17,7 @@ Run TrenchBoot SDK container:
 ```shell
 docker run --rm -it -v $PWD/grub:/home/trenchboot/grub \
 -w /home/trenchboot/grub \
-ghcr.io/trenchboot/trenchboot-sdk:latest /bin/bash
+ghcr.io/trenchboot/trenchboot-sdk:master /bin/bash
 ```
 
 Prepare GRUB2 compilation:
@@ -57,7 +57,7 @@ Run TrenchBoot SDK container:
 ```shell
 docker run --rm -it -v $PWD/xen:/home/trenchboot/xen \
 -w /home/trenchboot/xen \
-ghcr.io/trenchboot/trenchboot-sdk:latest /bin/bash
+ghcr.io/trenchboot/trenchboot-sdk:master /bin/bash
 ```
 
 Compile:
