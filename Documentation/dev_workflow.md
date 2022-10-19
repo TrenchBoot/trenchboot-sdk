@@ -1,3 +1,5 @@
+# Manual GRUB and Xen installation
+
 This document shows an example of development process for Xen and GRUB installed
 on remote machine.
 
@@ -53,7 +55,7 @@ cd ../..
 
 ```shell
 cd grub/build
-make
+make -j $(nproc)
 make install
 cd ../..
 ```
@@ -62,7 +64,7 @@ cd ../..
 
 ```shell
 cd xen
-make build-xen
+make build-xen -j $(nproc)
 cd ..
 ```
 
@@ -74,12 +76,13 @@ This step prepares a list of files that must be copied to target and starts a
 simple HTTP server. Substitute `<<hostIP>>` with your address.
 
 ```shell
+export HOST_IP="<<hostIP>>"
 ls -1 grub/build/local/lib/grub/i386-pc/ | \
-  sed "s#\(.*\)#http://<<hostIP>>:8080/grub/build/local/lib/grub/i386-pc/\1#" \
+  sed "s#\(.*\)#http://$HOST_IP:8080/grub/build/local/lib/grub/i386-pc/\1#" \
   > list
-echo http://<<hostIP>>:8080/grub/build/local/sbin/grub-install >> list
-echo http://<<hostIP>>:8080/xen/xen/xen.gz >> list
-python -m SimpleHTTPServer 8080
+echo http://$HOST_IP:8080/grub/build/local/sbin/grub-install >> list
+echo http://$HOST_IP:8080/xen/xen/xen.gz >> list
+python -m http.server 8080
 ```
 
 ### Debian on target - GRUB and Xen installation
@@ -120,7 +123,7 @@ should be changed for VGA.
 Example content of `grub.cfg`:
 
 ```
-set debug=linux,relocator,multiboot,slaunch
+set debug=linux,relocator,multiboot_loader,slaunch
 
 # Skip following 3 lines if you don't need serial output
 serial --speed=115200 --word=8 --parity=no --stop=1
