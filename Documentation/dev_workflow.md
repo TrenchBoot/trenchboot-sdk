@@ -157,3 +157,73 @@ menuentry 'Qubes, with Xen hypervisor and TrenchBoot' {
 }
 ```
 
+## Firmware preparation
+
+### Configuring firmware for the Dell OptiPlex 7010/9010
+
+This step prepares the firmware with TXT firmware for the Dell OptiPlex
+7010/9010 computer. Do note that some of the binary blobs necessary for building
+functional firmware are not publically available and we cannot share them here.
+You may need to extract them yourself, but these steps are not covered in this
+tutorial.
+
+These instructions require that you have Docker installed and configured
+correctly.
+
+- Clone the coreboot repository:
+
+	```bash
+	git clone https://review.coreboot.org/coreboot.git
+	cd coreboot
+	git submodule update --init --checkout --recursive
+	```
+
+- Launch the coreboot-sdk Docker container:
+
+	```bash
+	docker run --rm -it \
+		-v $PWD:/home/coreboot/coreboot \
+		-w /home/coreboot/coreboot \
+		coreboot/coreboot-sdk:0ad5fbd48d
+	```
+
+- Copy the default board config:
+
+	```bash
+	cp configs/config.dell_optiplex_9010_sff .config
+	make olddefconfig
+	```
+
+- Enter `menuconfig` to enable Intel TXT support:
+
+	```bash
+	make menuconfig
+	```
+
+	- Select `Security` -> `Trusted Platform Module` -> `Enable Measured Boot`
+	- Select `Security` -> `Intel TXT Support`
+	- Set `Security` -> `BIOS ACM File` to the path to the IVB BIOS ACM blob
+	  (not available publically)
+	- Set `Security` -> `SINIT ACM File` to the path to the IVB SINIT ACM blob
+	  (not available publically)
+	- Select `Security` -> `Enable Verbose Logging`
+	- Set `Security` -> `BIOS Data Region version` to 4 (reqired for QubesOS
+	  and Tboot testing)
+	- Set `Mainboard` -> `Size of CBFS filesystem in ROM` to `0x400000` (allows
+	  for easier recovery in case the machine is bricked)
+	- Select `Mainboard` -> `Include SMSC SCH5545 EC firmware binary`
+	- Set `File path to the SMSC SCH5545 EC firmware binary` to the path to the
+	  SCH5545 firmware blob (not available publically)
+	- Select `Payload` -> `Add SeaBIOS sercon-port file to CBFS`
+	- Set `Console` -> `Default console log level` to `8: SPEW` (highest debug
+	  logging level available)
+	- Save and exit
+
+- Build coreboot:
+
+	```bash
+	make
+	```
+
+The resulting firmware binary will be placed in `build/coreboot.rom`. You can
+now flash it to the machine using your preferred method.
