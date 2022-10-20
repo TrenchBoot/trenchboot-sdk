@@ -16,6 +16,7 @@ RUN \
 		bin86 \
 		bison \
 		bridge-utils \
+		bsdextrautils \
 		build-essential \
 		bzip2 \
 		ccache \
