@@ -156,4 +156,3 @@ menuentry 'Qubes, with Xen hypervisor and TrenchBoot' {
 	slaunch_state
 }
 ```
-
