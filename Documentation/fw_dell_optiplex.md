@@ -16,7 +16,7 @@ correctly.
     ```bash
     git clone https://review.coreboot.org/coreboot.git
     cd coreboot
-    git checkout 4dba71fd25c91a9e610287c61238a8fe24452e4e
+    git checkout fa78ecacec2694753068a9e769a3d68d5dad2b62
     git submodule update --init --checkout --recursive
     ```
 
@@ -32,7 +32,7 @@ correctly.
     docker run --rm -it \
         -v $PWD:/home/coreboot/coreboot \
         -w /home/coreboot/coreboot \
-        coreboot/coreboot-sdk:0ad5fbd48d
+        coreboot/coreboot-sdk:2023-06-04_44f676afc9
     ```
 
 - Build coreboot firmware:
