@@ -1,10 +1,10 @@
-## Firmware preparation
+# Firmware preparation
 
-### Configuring firmware for the Dell OptiPlex 7010/9010
+## Configuring firmware for the Dell OptiPlex 7010/9010
 
 This step prepares the firmware with TXT firmware for the Dell OptiPlex
 7010/9010 computer. Do note that some of the binary blobs necessary for building
-functional firmware are not publically available and we cannot share them here.
+functional firmware are not publicly available and we cannot share them here.
 You may need to extract them yourself, but these steps are not covered in this
 tutorial.
 
