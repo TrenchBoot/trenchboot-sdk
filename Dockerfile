@@ -69,7 +69,7 @@ RUN \
 		wget \
 		xz-utils \
 		zlib1g-dev \
-	&& apt-get clean 
+	&& apt-get clean
 
 ENV PATH="/usr/lib/ccache:${PATH}"
 RUN mkdir /home/trenchboot/.ccache && \
