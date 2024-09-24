@@ -1,6 +1,7 @@
 # trenchboot-sdk
 
-SDK for building and maintaining TrenchBoot patches fro GRUB2, Xen and Linux kernel.
+SDK for building and maintaining TrenchBoot patches for GRUB2, Xen and Linux
+kernel.
 
 ## How to compile most recent TrenchBoot patches
 
