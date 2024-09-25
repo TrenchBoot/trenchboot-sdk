@@ -40,7 +40,7 @@ RUN \
 		libncurses5-dev \
 		libpci-dev \
 		libpixman-1-dev \
-		libsdl-dev \
+		libsdl2-dev \
 		libsystemd-dev \
 		libvncserver-dev \
 		libx11-dev \
@@ -54,9 +54,7 @@ RUN \
 		pandoc \
 		patch \
 		pkg-config \
-		python \
-		python \
-		python-dev \
+		python3 \
 		python3-dev \
 		texinfo \
 		texlive-fonts-extra \
