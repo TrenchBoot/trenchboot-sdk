@@ -12,6 +12,7 @@ RUN \
 	apt-get -qqy install \
 		autoconf \
 		autopoint \
+		bc \
 		bcc \
 		bin86 \
 		bison \
@@ -36,11 +37,13 @@ RUN \
 		libc6-dev-i386 \
 		libcurl4 \
 		libcurl4-openssl-dev \
+		libelf-dev \
 		liblzma-dev \
 		libncurses5-dev \
 		libpci-dev \
 		libpixman-1-dev \
 		libsdl2-dev \
+		libssl-dev \
 		libsystemd-dev \
 		libvncserver-dev \
 		libx11-dev \
